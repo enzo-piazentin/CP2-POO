@@ -1,23 +1,25 @@
 package FiapDelivery.main;
 
-import FiapDelivery.model.Caminhao;
+
 import FiapDelivery.model.Pacote;
 import FiapDelivery.model.Rota;
+import FiapDelivery.model.Veiculo.Caminhao;
+import FiapDelivery.model.Veiculo.Moto;
+import FiapDelivery.model.Veiculo.Veiculo;
 
 public class SistemaPrincipal {
     public static void main(String[] args) {
-        Caminhao c = new Caminhao();
-        c.pl = "ABC-1234";
-        c.cap = 500.0;
+        Veiculo caminhao = new Caminhao("ABC1234", 1000, 6);
+        Veiculo moto = new Moto("XYZ9999", 50, true);
 
-        Pacote pac = new Pacote();
-        pac.cod = "BR999";
-        pac.p = 10.5;
-        pac.s = "Pendente";
+        Pacote pacote = new Pacote("BR999", 10.5);
 
-        Rota r = new Rota();
-        r.p1 = pac;
-        r.c1 = c;
-        r.vai();
+        Rota rota1 = new Rota(pacote, caminhao);
+        rota1.iniciarEntrega();
+
+        System.out.println("----");
+
+        Rota rota2 = new Rota(pacote, moto);
+        rota2.iniciarEntrega();
     }
 }
